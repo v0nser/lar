@@ -1,7 +1,7 @@
 /**
  * The only sanctioned logging path in the frontend.
  *
- * Coda handles meeting transcripts, summaries and notes. Anything written
+ * Lar handles meeting transcripts, summaries and notes. Anything written
  * to the console is readable by anyone who opens devtools, and would also be
  * visible on a shared screen. So:
  *
@@ -16,13 +16,13 @@ const isDev = import.meta.env.DEV;
 const noop = () => {};
 
 export const log = {
-  debug: isDev ? console.debug.bind(console, "[coda]") : noop,
-  info: isDev ? console.info.bind(console, "[coda]") : noop,
-  warn: isDev ? console.warn.bind(console, "[coda]") : noop,
+  debug: isDev ? console.debug.bind(console, "[lar]") : noop,
+  info: isDev ? console.info.bind(console, "[lar]") : noop,
+  warn: isDev ? console.warn.bind(console, "[lar]") : noop,
 
   /**
    * Reports a failure. Pass a fixed, human-written message — never a
    * transcript, note body, prompt or model response.
    */
-  error: (message: string) => console.error("[coda]", message),
+  error: (message: string) => console.error("[lar]", message),
 };

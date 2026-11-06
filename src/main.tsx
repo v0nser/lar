@@ -16,7 +16,7 @@ document.addEventListener("drop", (event) => event.preventDefault());
 window.addEventListener("error", (event) => {
   event.preventDefault();
   useAgentStore.setState({
-    error: event.message || "Something went wrong. Coda is still running.",
+    error: event.message || "Something went wrong. Lar is still running.",
   });
 });
 
@@ -24,7 +24,7 @@ window.addEventListener("unhandledrejection", (event) => {
   event.preventDefault();
   const reason = event.reason instanceof Error ? event.reason.message : String(event.reason ?? "");
   useAgentStore.setState({
-    error: reason || "A background task failed. Coda is still running.",
+    error: reason || "A background task failed. Lar is still running.",
   });
 });
 

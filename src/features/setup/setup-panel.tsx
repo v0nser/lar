@@ -13,7 +13,7 @@ export function SetupPanel() {
 
   return (
     <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-6 py-6">
-      <h1 className="text-lg font-medium">Set up Coda</h1>
+      <h1 className="text-lg font-medium">Set up Lar Beta</h1>
       <p className="mt-1 max-w-xl text-sm leading-relaxed text-muted-foreground">
         Everything stays on this machine. Two local pieces: a speech model and
         Ollama. {windows ? "Windows does not need a virtual audio driver." : null}
@@ -87,26 +87,26 @@ export function SetupPanel() {
         <Step
           done
           title="Permissions"
-          body="I ask before email, calendar, or delete. After you approve, Mail/Outlook sends, Calendar creates the event, and Reminders sets the alarm. macOS will prompt for Automation access — allow Coda. Because Coda is a new app identity, re-grant Microphone, Screen Recording, Notifications, and Automation. Files stay in Downloads, Documents, Desktop, and Home. PDFs are read locally. Existing Ghost Note data is copied into ~/.coda and left in place."
+          body="I ask before email, calendar, or delete. After you approve, Mail/Outlook sends, Calendar creates the event, and Reminders sets the alarm. macOS will prompt for Automation access — allow Lar. Because Lar is a new app identity, re-grant Microphone, Screen Recording, Notifications, and Automation. Files stay in Downloads, Documents, Desktop, and Home. PDFs are read locally. Existing Ghost Note data is copied into ~/.lar and left in place."
         />
 
         <Step
           done
           title="Screen ask"
-          body="⌘⇧C (Ctrl+Shift+C on Windows) captures the focused window in memory and asks a local vision model what’s on it. Nothing is saved unless you turn that on. Pull moondream: ollama pull moondream. macOS needs Screen Recording for Coda."
+          body="⌘⇧C (Ctrl+Shift+C on Windows) captures the focused window in memory and asks a local vision model what’s on it. Nothing is saved unless you turn that on. Pull moondream: ollama pull moondream. macOS needs Screen Recording for Lar."
         />
 
         <Step
           done
           title="Open at login"
-          body="LaunchAgent on macOS (not a LaunchDaemon, which would break screen capture). Windows uses a current-user Run key. Coda still hides instead of quitting."
+          body="LaunchAgent on macOS (not a LaunchDaemon, which would break screen capture). Windows uses a current-user Run key. Lar still hides instead of quitting."
         >
           <label className="flex items-center gap-2 text-xs">
             <Switch
               checked={Boolean(setup?.autostart)}
               onCheckedChange={(checked) => void setAutostart(checked)}
             />
-            Start Coda when I sign in
+            Start Lar when I sign in
           </label>
           <p className="text-[11px] text-muted-foreground">
             Folder watch: {setup?.watchFolder ?? "~/Downloads"} — new files that match a memory wait for your approval. Nothing is auto-opened.

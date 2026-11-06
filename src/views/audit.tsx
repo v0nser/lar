@@ -34,7 +34,7 @@ export function AuditView() {
         <div>
           <h1 className="text-lg font-medium">Audit</h1>
           <p className="mt-1 text-xs text-muted-foreground">
-            Local log at ~/.coda/coda_audit.log. Nothing is uploaded.
+            Local log at ~/.lar/lar_audit.log. Nothing is uploaded.
           </p>
         </div>
         <Button
@@ -49,7 +49,7 @@ export function AuditView() {
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement("a");
                 a.href = url;
-                a.download = "coda_audit.log";
+                a.download = "lar_audit.log";
                 a.click();
                 URL.revokeObjectURL(url);
               } catch (err) {

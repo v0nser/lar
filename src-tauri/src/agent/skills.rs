@@ -1,4 +1,4 @@
-//! Everyday agent skills. These run inside Coda — the model only names
+//! Everyday agent skills. These run inside Lar — the model only names
 //! the skill and arguments. Results are verified before the user is told.
 
 use std::path::{Path, PathBuf};
@@ -33,7 +33,7 @@ fn set_reminder(args: &Value) -> AgentResult<ToolOutput> {
         .get("title")
         .and_then(Value::as_str)
         .filter(|text| !text.is_empty())
-        .unwrap_or("Coda reminder");
+        .unwrap_or("Lar reminder");
     let when = parse_when(
         args.get("when")
             .and_then(Value::as_str)
@@ -121,9 +121,9 @@ fn find_file(query: &str) -> AgentResult<ToolOutput> {
 }
 
 fn create_document(title: &str, content: &str) -> AgentResult<ToolOutput> {
-    let dir = documents_dir().join("Coda");
+    let dir = documents_dir().join("Lar");
     std::fs::create_dir_all(&dir)
-        .map_err(|err| AgentError::msg(format!("Could not create Documents/Coda: {err}")))?;
+        .map_err(|err| AgentError::msg(format!("Could not create Documents/Lar: {err}")))?;
     let stem = sanitize_name(title);
     let path = dir.join(format!("{stem}.md"));
     let body = if content.trim().is_empty() {
@@ -171,7 +171,7 @@ fn send_email(args: &Value) -> AgentResult<ToolOutput> {
         .get("subject")
         .and_then(Value::as_str)
         .filter(|text| !text.is_empty())
-        .unwrap_or("Coda");
+        .unwrap_or("Lar");
     let body = args.get("body").and_then(Value::as_str).unwrap_or("");
     if to.is_empty() || !to.contains('@') {
         return Err(AgentError::msg(
@@ -194,7 +194,7 @@ fn send_email(args: &Value) -> AgentResult<ToolOutput> {
         let ok = osascript(&script)?;
         if !ok {
             return Err(AgentError::msg(
-                "Mail did not send. Grant Coda control of Mail in System Settings → Privacy & Security → Automation, then approve again.",
+                "Mail did not send. Grant Lar control of Mail in System Settings → Privacy & Security → Automation, then approve again.",
             ));
         }
         return Ok(ToolOutput {
@@ -276,7 +276,7 @@ fn calendar_event(args: &Value) -> AgentResult<ToolOutput> {
         .get("title")
         .and_then(Value::as_str)
         .filter(|text| !text.is_empty())
-        .unwrap_or("Coda event");
+        .unwrap_or("Lar event");
     let when = parse_when(args.get("when").and_then(Value::as_str).unwrap_or(""))?;
     let apple = apple_date(when)?;
     if cfg!(target_os = "macos") {
@@ -351,7 +351,7 @@ fn remind_windows(title: &str, when: SystemTime) -> AgentResult<bool> {
             "/ST",
             &stamp,
             "/TN",
-            &format!("Coda\\{title}"),
+            &format!("Lar\\{title}"),
             "/TR",
             &format!("msg * {title}"),
             "/F",

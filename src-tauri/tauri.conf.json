@@ -1,8 +1,8 @@
 {
   "$schema": "https://schema.tauri.app/config/2",
-  "productName": "Coda",
+  "productName": "Lar Beta",
   "version": "0.1.0",
-  "identifier": "app.coda.desktop",
+  "identifier": "app.lar.desktop",
   "build": {
     "beforeDevCommand": "npm run dev",
     "devUrl": "http://localhost:1420",
@@ -15,7 +15,7 @@
     "windows": [
       {
         "label": "main",
-        "title": "Coda",
+        "title": "Lar Beta",
         "width": 1180,
         "height": 760,
         "minWidth": 880,
@@ -43,8 +43,8 @@
     "targets": ["dmg", "nsis", "app"],
     "externalBin": ["binaries/whisper-cli"],
     "category": "Productivity",
-    "shortDescription": "Coda: Your work, resolved. Your mind, at peace.",
-    "longDescription": "Coda is a local-first desktop assistant. Meetings, files, and tools stay on your machine. It asks before email, calendar, or anything irreversible.",
+    "shortDescription": "Lar Beta: Your work, resolved. Your mind, at peace.",
+    "longDescription": "Lar is a local-first desktop assistant. Meetings, files, and tools stay on your machine. It asks before email, calendar, or anything irreversible.",
     "icon": [
       "icons/32x32.png",
       "icons/128x128.png",

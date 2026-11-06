@@ -18,9 +18,9 @@ use crate::audio::types::Speaker;
 use crate::transcribe::TranscriptSegment;
 
 /// Emitted whenever a fresh draft is ready (including mid-stream tokens).
-pub const POINTS_EVENT: &str = "coda://talking-points";
+pub const POINTS_EVENT: &str = "lar://talking-points";
 /// Emitted when generation starts, finishes, or Ollama becomes unavailable.
-pub const STATUS_EVENT: &str = "coda://coach-status";
+pub const STATUS_EVENT: &str = "lar://coach-status";
 
 /// Only enough to let a trailing word land on the same turn. The pause that
 /// means "they finished" already happened in the segmenter.

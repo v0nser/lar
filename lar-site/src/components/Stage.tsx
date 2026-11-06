@@ -8,8 +8,8 @@ import { PROP_ORDER, PropCard } from "./cast/Props";
 import { Subtitle } from "./cast/Subtitle";
 
 const CHAPTERS: Chapter[] = site.story.chapters;
-const SEATS: Who[] = ["engineer", "coda", "friend"];
-const SEAT_X: Record<Who, number> = { engineer: -1, coda: 0, friend: 1 };
+const SEATS: Who[] = ["engineer", "lar", "friend"];
+const SEAT_X: Record<Who, number> = { engineer: -1, lar: 0, friend: 1 };
 
 export function Stage() {
   return (
@@ -71,8 +71,8 @@ function StageInner() {
   const speaker = line.who;
   const speaking = (who: Who) => who === speaker && !typed.done;
   const lookFor = (who: Who) => {
-    if (who === "coda") return speaker === "coda" ? { x: 0, y: 0.35 } : { x: SEAT_X[speaker] * 0.9, y: 0.2 };
-    const target = speaker === who ? (ch.coda ? "coda" : who === "engineer" ? "friend" : "engineer") : speaker;
+    if (who === "lar") return speaker === "lar" ? { x: 0, y: 0.35 } : { x: SEAT_X[speaker] * 0.9, y: 0.2 };
+    const target = speaker === who ? (ch.lar ? "lar" : who === "engineer" ? "friend" : "engineer") : speaker;
     return { x: Math.sign(SEAT_X[target] - SEAT_X[who]) * 0.85, y: 0 };
   };
 
@@ -185,7 +185,7 @@ function StageInner() {
 
               <div className="mt-auto grid grid-cols-3 items-end gap-2 md:gap-6">
                 {SEATS.map((who) => {
-                  const present = who !== "coda" || ch.coda;
+                  const present = who !== "lar" || ch.lar;
                   return (
                     <div key={who} className="flex flex-col items-center">
                       <div className="relative aspect-square w-full max-w-[160px] overflow-hidden md:max-w-[200px]">
@@ -194,7 +194,7 @@ function StageInner() {
                             <motion.div
                               key={who}
                               className="absolute inset-0"
-                              initial={who === "coda" ? { opacity: 0, y: -28, scale: 0.5 } : { opacity: 0, y: 24 }}
+                              initial={who === "lar" ? { opacity: 0, y: -28, scale: 0.5 } : { opacity: 0, y: 24 }}
                               animate={{ opacity: 1, x: 0, y: 0, scale: 1 }}
                               exit={{ opacity: 0, scale: 0.6 }}
                               transition={{ type: "spring", stiffness: 140, damping: 18 }}

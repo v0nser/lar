@@ -30,10 +30,10 @@ pub use correct::voice_command as correct_voice;
 pub use error::{TranscribeError, TranscribeResult};
 
 /// Emitted for every recognised utterance.
-pub const SEGMENT_EVENT: &str = "coda://transcript-segment";
+pub const SEGMENT_EVENT: &str = "lar://transcript-segment";
 /// Emitted when transcription fails, so the UI can show a degraded state
 /// rather than silently stop producing text.
-pub const ERROR_EVENT: &str = "coda://transcript-error";
+pub const ERROR_EVENT: &str = "lar://transcript-error";
 
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]

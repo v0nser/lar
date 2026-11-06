@@ -35,12 +35,12 @@ pub struct ModelStatus {
 }
 
 pub fn model_dir(_app: &AppHandle) -> TranscribeResult<PathBuf> {
-    Ok(crate::coda::models_dir())
+    Ok(crate::lar::models_dir())
 }
 
 pub fn resolve(app: &AppHandle) -> TranscribeResult<PathBuf> {
     let dir = model_dir(app)?;
-    if let Ok(forced) = std::env::var("CODA_WHISPER_MODEL")
+    if let Ok(forced) = std::env::var("LAR_WHISPER_MODEL")
         .or_else(|_| std::env::var("GHOSTNOTE_WHISPER_MODEL"))
     {
         if !forced.is_empty() {

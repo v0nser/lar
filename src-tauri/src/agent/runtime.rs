@@ -17,7 +17,7 @@ use super::types::{
     ScheduledTask, StepStatus, TaskStatus, ToolCallRecord,
 };
 
-pub const EVENT: &str = "coda://agent-event";
+pub const EVENT: &str = "lar://agent-event";
 
 struct Inner {
     snap: AgentSnapshot,
@@ -569,7 +569,7 @@ impl AgentRuntime {
         self.finish(
             app,
             id,
-            format!("That task failed, but Coda is still running.\n\n{error}"),
+            format!("That task failed, but Lar is still running.\n\n{error}"),
             Some(error),
         )
     }
@@ -1493,7 +1493,7 @@ fn user_facing_failure(err: &AgentError) -> String {
         return text;
     }
     if text.contains("permission") || text.contains("not permitted") {
-        return format!("Coda doesn't have permission to do that. {text}");
+        return format!("Lar doesn't have permission to do that. {text}");
     }
     if text.contains("Ollama") || text.contains("connection") || text.contains("11434") {
         return "Agent model unavailable. Please check Ollama.".into();
@@ -1559,10 +1559,10 @@ fn extract_folder_path(goal: &str) -> String {
 
 fn consequence(tool: &str) -> &'static str {
     match tool {
-        "FILES_WRITE" => "A file will be created in the local Coda workspace.",
+        "FILES_WRITE" => "A file will be created in the local Lar workspace.",
         "FILES_DELETE" => "A workspace file will be permanently deleted.",
         "MEMORY_DELETE" => "These stored rows (and their embeddings) will be deleted, not hidden.",
-        "SUGGEST_FILE" => "Coda noticed a new file that may match a memory. Nothing will be opened or sent.",
+        "SUGGEST_FILE" => "Lar noticed a new file that may match a memory. Nothing will be opened or sent.",
         "EMAIL_SEND" | "DRAFT_EMAIL" => "Your mail app will open a draft. Nothing is sent until you send it.",
         "CALENDAR_EVENT" => "An event will be added to Calendar.",
         "SHELL_EXECUTE" => "A local process would run.",
@@ -1616,7 +1616,7 @@ async fn embed_memory(http: &reqwest::Client, config: &AgentConfig, text: &str) 
                 .collect()
         })
         .unwrap_or_default();
-    let preferred = std::env::var("CODA_EMBED_MODEL")
+    let preferred = std::env::var("LAR_EMBED_MODEL")
         .ok()
         .or_else(|| std::env::var("GHOSTNOTE_EMBED_MODEL").ok());
     let model = memory::pick_embed_model(&names, preferred.as_deref())?;

@@ -28,7 +28,7 @@ fn ping(app: &AppHandle) {
         notifications::dispatch(
             app,
             Notification {
-                title: "Coda".into(),
+                title: "Lar".into(),
                 body: format!("{overdue} meeting action item(s) look overdue."),
             },
         );
@@ -46,7 +46,7 @@ fn ping(app: &AppHandle) {
         notifications::dispatch(
             app,
             Notification {
-                title: "Coda".into(),
+                title: "Lar".into(),
                 body: format!("{pending} action(s) waiting for your approval."),
             },
         );

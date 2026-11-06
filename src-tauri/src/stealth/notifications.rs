@@ -1,11 +1,11 @@
 //! Notification gate.
 //!
-//! While Stealth Mode is active every notification Coda would raise is
+//! While Stealth Mode is active every notification Lar would raise is
 //! dropped at the source. A toast sliding in from the corner of the screen is
 //! rendered by the OS *outside* our window, so capture exclusion cannot hide
 //! it — suppressing emission is the only reliable defence.
 //!
-//! All Coda notifications must go through [`dispatch`]; nothing should
+//! All Lar notifications must go through [`dispatch`]; nothing should
 //! call a notification API directly.
 
 use std::sync::atomic::{AtomicBool, Ordering};
@@ -17,7 +17,7 @@ use tauri_plugin_notification::NotificationExt;
 static SUPPRESSED: AtomicBool = AtomicBool::new(false);
 
 /// Event name the frontend listens on for in-window (non-OS) notices.
-pub const NOTIFICATION_EVENT: &str = "coda://notification";
+pub const NOTIFICATION_EVENT: &str = "lar://notification";
 
 #[derive(Debug, Clone, Serialize)]
 pub struct Notification {

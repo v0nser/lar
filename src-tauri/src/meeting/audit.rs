@@ -102,7 +102,7 @@ fn preview(text: &str, max: usize) -> String {
 }
 
 fn audit_path(_app: &AppHandle) -> Option<PathBuf> {
-    Some(crate::coda::agent_dir().join("meeting_audit.jsonl"))
+    Some(crate::lar::agent_dir().join("meeting_audit.jsonl"))
 }
 
 #[cfg(test)]

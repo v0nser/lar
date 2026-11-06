@@ -36,8 +36,13 @@ pub struct AgentConfig {
 impl Default for AgentConfig {
     fn default() -> Self {
         Self {
-            agent_enabled: env_flag_any(&["CODA_AGENT_ENABLED", "GHOSTNOTE_AGENT_ENABLED"], true),
+            agent_enabled: env_flag_any(
+                &["LAR_AGENT_ENABLED", "CODA_AGENT_ENABLED", "GHOSTNOTE_AGENT_ENABLED"],
+                true,
+            ),
             default_model: env_first(&[
+                "LAR_AGENT_MODEL",
+                "LAR_MODEL",
                 "CODA_AGENT_MODEL",
                 "CODA_MODEL",
                 "GHOSTNOTE_AGENT_MODEL",
@@ -64,19 +69,39 @@ impl Default for AgentConfig {
             require_approval_for_purchase: env_flag("REQUIRE_APPROVAL_FOR_PURCHASE", true),
             require_approval_for_file_delete: env_flag("REQUIRE_APPROVAL_FOR_FILE_DELETE", true),
             require_approval_for_file_write: env_flag("REQUIRE_APPROVAL_FOR_FILE_WRITE", false),
-            prefer_fast_model: env_flag_any(&["CODA_FAST", "GHOSTNOTE_FAST"], true),
-            agent_model: env_first(&["CODA_AGENT_MODEL", "GHOSTNOTE_AGENT_MODEL"]),
-            fast_router_model: env_first(&["CODA_FAST_MODEL", "GHOSTNOTE_FAST_MODEL"]),
-            vision_model: env_first(&["CODA_VISION_MODEL", "GHOSTNOTE_VISION_MODEL"]),
-            speech_model: env_first(&["CODA_SPEECH_MODEL", "GHOSTNOTE_SPEECH_MODEL"]),
+            prefer_fast_model: env_flag_any(&["LAR_FAST", "CODA_FAST", "GHOSTNOTE_FAST"], true),
+            agent_model: env_first(&["LAR_AGENT_MODEL", "CODA_AGENT_MODEL", "GHOSTNOTE_AGENT_MODEL"]),
+            fast_router_model: env_first(&[
+                "LAR_FAST_MODEL",
+                "CODA_FAST_MODEL",
+                "GHOSTNOTE_FAST_MODEL",
+            ]),
+            vision_model: env_first(&[
+                "LAR_VISION_MODEL",
+                "CODA_VISION_MODEL",
+                "GHOSTNOTE_VISION_MODEL",
+            ]),
+            speech_model: env_first(&[
+                "LAR_SPEECH_MODEL",
+                "CODA_SPEECH_MODEL",
+                "GHOSTNOTE_SPEECH_MODEL",
+            ]),
             save_screen_captures: env_flag_any(
-                &["CODA_SAVE_SCREEN_CAPTURES", "GHOSTNOTE_SAVE_SCREEN_CAPTURES"],
+                &[
+                    "LAR_SAVE_SCREEN_CAPTURES",
+                    "CODA_SAVE_SCREEN_CAPTURES",
+                    "GHOSTNOTE_SAVE_SCREEN_CAPTURES",
+                ],
                 false,
             ),
-            screen_hotkey: env_first(&["CODA_SCREEN_HOTKEY", "GHOSTNOTE_SCREEN_HOTKEY"])
-                .unwrap_or_else(default_screen_hotkey),
-            autostart: env_flag("CODA_AUTOSTART", false),
-            watch_folder: env_first(&["CODA_WATCH_FOLDER"]).unwrap_or_default(),
+            screen_hotkey: env_first(&[
+                "LAR_SCREEN_HOTKEY",
+                "CODA_SCREEN_HOTKEY",
+                "GHOSTNOTE_SCREEN_HOTKEY",
+            ])
+            .unwrap_or_else(default_screen_hotkey),
+            autostart: env_flag_any(&["LAR_AUTOSTART", "CODA_AUTOSTART"], false),
+            watch_folder: env_first(&["LAR_WATCH_FOLDER", "CODA_WATCH_FOLDER"]).unwrap_or_default(),
         }
     }
 }

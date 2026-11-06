@@ -33,7 +33,7 @@ pub struct AgentSnapshot {
 }
 
 pub fn root(_app: &AppHandle) -> AgentResult<PathBuf> {
-    let dir = crate::coda::agent_dir();
+    let dir = crate::lar::agent_dir();
     fs::create_dir_all(dir.join("tasks")).ok();
     fs::create_dir_all(dir.join("workspace")).ok();
     fs::create_dir_all(dir.join("artifacts")).ok();
@@ -76,7 +76,7 @@ pub fn append_audit(app: &AppHandle, event: &str, body: &serde_json::Value) -> A
     });
     let path = root(app)?.join("audit.jsonl");
     append_line(&path, &line.to_string())?;
-    let mirror = crate::coda::home().join("coda_audit.log");
+    let mirror = crate::lar::home().join("lar_audit.log");
     let human = format!(
         "{ts} {event} {}\n",
         body.to_string().chars().take(400).collect::<String>()
@@ -107,7 +107,7 @@ pub struct AuditRow {
 }
 
 pub fn read_audit(_app: &AppHandle, query: Option<&str>, limit: usize) -> AgentResult<Vec<AuditRow>> {
-    let dir = crate::coda::agent_dir();
+    let dir = crate::lar::agent_dir();
     let mut rows = Vec::new();
     read_jsonl(&dir.join("audit.jsonl"), &mut rows);
     if let Some(q) = query.map(str::trim).filter(|q| !q.is_empty()) {
@@ -123,7 +123,7 @@ pub fn read_audit(_app: &AppHandle, query: Option<&str>, limit: usize) -> AgentR
 }
 
 pub fn export_audit_text() -> AgentResult<String> {
-    let path = crate::coda::home().join("coda_audit.log");
+    let path = crate::lar::home().join("lar_audit.log");
     if !path.is_file() {
         return Ok(String::new());
     }
@@ -240,7 +240,7 @@ mod tests {
     #[test]
     fn read_jsonl_parses_unified_and_meeting_shapes() {
         let dir = std::env::temp_dir().join(format!(
-            "coda-audit-parse-{}",
+            "lar-audit-parse-{}",
             std::time::SystemTime::now()
                 .duration_since(std::time::UNIX_EPOCH)
                 .map(|d| d.as_nanos())

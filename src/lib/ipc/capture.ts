@@ -66,10 +66,10 @@ export interface CaptureOptions {
 }
 
 export const CAPTURE_EVENTS = {
-  segment: "coda://transcript-segment",
-  transcriptError: "coda://transcript-error",
-  level: "coda://audio-level",
-  vad: "coda://vad",
+  segment: "lar://transcript-segment",
+  transcriptError: "lar://transcript-error",
+  level: "lar://audio-level",
+  vad: "lar://vad",
 } as const;
 
 export const captureIpc = {

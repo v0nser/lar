@@ -435,7 +435,7 @@ fn extract_model_matches(name: &str) -> bool {
 
 /// Prefer a small local model so first tokens arrive quickly.
 pub fn pick_fast_model(names: &[String]) -> Option<String> {
-    if let Ok(forced) = std::env::var("CODA_MODEL").or_else(|_| std::env::var("GHOSTNOTE_MODEL")) {
+    if let Ok(forced) = std::env::var("LAR_MODEL").or_else(|_| std::env::var("GHOSTNOTE_MODEL")) {
         if !forced.is_empty() {
             if let Some(hit) = names.iter().find(|name| {
                 *name == &forced || name.starts_with(&format!("{forced}:")) || name.starts_with(&forced)

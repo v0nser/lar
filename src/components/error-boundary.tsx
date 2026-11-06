@@ -11,7 +11,7 @@ export class AppErrorBoundary extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, info: ErrorInfo) {
-    console.error("Coda UI error (app stays open)", error, info.componentStack);
+    console.error("Lar UI error (app stays open)", error, info.componentStack);
   }
 
   render() {
@@ -20,7 +20,7 @@ export class AppErrorBoundary extends Component<Props, State> {
     }
     return (
       <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-[#121214] p-6 text-center text-sm text-foreground">
-        <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Coda is still running</p>
+        <p className="text-xs uppercase tracking-[0.14em] text-muted-foreground">Lar is still running</p>
         <p>{this.state.error}</p>
         <button
           type="button"

@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* Coda ships dark-only. The window itself is transparent so the app can
+/* Lar ships dark-only. The window itself is transparent so the app can
    paint its own rounded surface in both the dashboard and pill shells; the
    page background must therefore stay transparent. */
 :root {

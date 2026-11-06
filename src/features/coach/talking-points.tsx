@@ -153,7 +153,7 @@ function TalkingPointsBody({
     <p className="text-xs leading-relaxed text-muted-foreground">
       {running
         ? "When they finish a question, one answer appears here."
-        : "Record a meeting. When they ask a question, Coda writes one thing to say."}
+        : "Record a meeting. When they ask a question, Lar writes one thing to say."}
     </p>
   );
 }

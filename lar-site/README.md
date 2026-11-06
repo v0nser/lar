@@ -1,11 +1,11 @@
-# Coda marketing site
+# Lar marketing site
 
-Hand-drawn landing page for **Coda**. Separate from the Tauri app and from the older Next.js `website/` (billing / Ghost Note).
+Hand-drawn landing page for **Lar**. Separate from the Tauri app and from the older Next.js `website/` (billing / Ghost Note).
 
-**Coda: Your work, resolved. Your mind, at peace.**
+**Lar Beta: Your work, resolved. Your mind, at peace.**
 
 ```bash
-cd coda-site
+cd lar-site
 npm install
 npm run dev
 ```

@@ -32,9 +32,9 @@ function HeroInner() {
 
   const speaker = line.who as Who;
   const look = (who: Who): { x: number; y: number } => {
-    if (who === speaker) return { x: 0, y: who === "coda" ? 0.35 : 0 };
-    if (who === "coda") return { x: speaker === "engineer" ? -0.85 : 0.85, y: 0.15 };
-    if (speaker === "coda") return { x: who === "engineer" ? 0.75 : -0.75, y: -0.05 };
+    if (who === speaker) return { x: 0, y: who === "lar" ? 0.35 : 0 };
+    if (who === "lar") return { x: speaker === "engineer" ? -0.85 : 0.85, y: 0.15 };
+    if (speaker === "lar") return { x: who === "engineer" ? 0.75 : -0.75, y: -0.05 };
     return { x: who === "engineer" ? 0.7 : -0.7, y: 0 };
   };
 
@@ -53,7 +53,7 @@ function HeroInner() {
         <div className="relative mt-4 flex min-h-0 flex-1 flex-col justify-center">
           <div className="mx-auto grid w-full max-w-4xl grid-cols-3 items-end gap-3 md:gap-10">
             <Actor who="engineer" speaker={speaker} typing={!typed.done} look={look("engineer")} />
-            <Actor who="coda" speaker={speaker} typing={!typed.done} look={look("coda")} track />
+            <Actor who="lar" speaker={speaker} typing={!typed.done} look={look("lar")} track />
             <Actor who="friend" speaker={speaker} typing={!typed.done} look={look("friend")} />
           </div>
 
@@ -109,7 +109,7 @@ function Actor({
         <Character
           who={who}
           label={cast[who].label}
-          mood={on && typing ? "curious" : who === "coda" ? "calm" : "tired"}
+          mood={on && typing ? "curious" : who === "lar" ? "calm" : "tired"}
           speaking={on && typing}
           dim={!on}
           look={look}

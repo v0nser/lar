@@ -168,9 +168,9 @@ export interface AuditRow {
 }
 
 export const AGENT_EVENTS = {
-  event: "coda://agent-event",
-  download: "coda://setup-download",
-  screenAsk: "coda://screen-ask",
+  event: "lar://agent-event",
+  download: "lar://setup-download",
+  screenAsk: "lar://screen-ask",
 } as const;
 
 export interface ScreenAskEvent {

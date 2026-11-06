@@ -422,7 +422,7 @@ function ApprovalBanner({ approval }: { approval: Approval }) {
         <ShieldAlert className="size-3.5" /> Action requires your approval
       </p>
       <p className="mt-2 text-sm">
-        Coda wants to {approval.action.toLowerCase()} · {approval.target}
+        Lar wants to {approval.action.toLowerCase()} · {approval.target}
       </p>
       {approval.tool === "MEMORY_DELETE" && approval.arguments?.matches?.length ? (
         <ul className="mt-2 max-h-28 space-y-1 overflow-y-auto text-xs text-amber-50/90">

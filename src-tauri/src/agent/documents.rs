@@ -225,7 +225,7 @@ mod tests {
 
     #[test]
     fn extracts_simple_pdf_literals() {
-        let dir = std::env::temp_dir().join("coda-pdf-test");
+        let dir = std::env::temp_dir().join("lar-pdf-test");
         let _ = std::fs::create_dir_all(&dir);
         let path = dir.join("hello.pdf");
         let mut file = std::fs::File::create(&path).expect("create");

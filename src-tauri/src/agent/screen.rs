@@ -18,7 +18,7 @@ use super::ids;
 use super::runtime::AgentRuntime;
 use super::store;
 
-pub const EVENT: &str = "coda://screen-ask";
+pub const EVENT: &str = "lar://screen-ask";
 pub const DEFAULT_HOTKEY: &str = "CommandOrControl+Shift+C";
 pub const DEFAULT_QUESTION: &str = "What's on my screen?";
 
@@ -233,9 +233,13 @@ fn is_own_window(window: &xcap::Window) -> bool {
         .unwrap_or_default()
         .to_ascii_lowercase();
     let title = window.title().unwrap_or_default().to_ascii_lowercase();
-    app.contains("coda")
+    app.contains("lar")
+        || app.contains("coda")
         || app.contains("ghostnote")
+        || title == "lar"
+        || title == "lar beta"
         || title == "coda"
+        || title.contains("lar —")
         || title.contains("coda —")
 }
 
@@ -285,7 +289,7 @@ fn encode_jpeg(rgba: &RgbaImage) -> AgentResult<Vec<u8>> {
 }
 
 fn save_capture(jpeg: &[u8]) -> AgentResult<Option<String>> {
-    let dir = crate::coda::agent_dir().join("screen-ask");
+    let dir = crate::lar::agent_dir().join("screen-ask");
     std::fs::create_dir_all(&dir)
         .map_err(|err| AgentError::msg(format!("Could not save the screen capture: {err}")))?;
     let path = dir.join(format!("{}.jpg", ids::now_ms()));
@@ -296,7 +300,7 @@ fn save_capture(jpeg: &[u8]) -> AgentResult<Option<String>> {
 
 fn permission_error() -> AgentError {
     AgentError::msg(
-        "Could not see the screen. Enable Screen Recording for Coda in System Settings → Privacy & Security, then try again.",
+        "Could not see the screen. Enable Screen Recording for Lar in System Settings → Privacy & Security, then try again.",
     )
 }
 
@@ -305,7 +309,7 @@ fn map_capture_error(text: &str) -> AgentError {
         permission_error()
     } else {
         AgentError::msg(format!(
-            "Could not see the screen. Enable Screen Recording for Coda. ({text})"
+            "Could not see the screen. Enable Screen Recording for Lar. ({text})"
         ))
     }
 }

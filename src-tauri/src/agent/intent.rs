@@ -440,7 +440,7 @@ fn parse_email_fields(lower: &str) -> (String, String, String) {
                 .to_string()
         })
         .filter(|text| !text.is_empty())
-        .unwrap_or_else(|| "Coda".into());
+        .unwrap_or_else(|| "Lar".into());
     let body = after_any(lower, &["saying ", "that says ", "body "])
         .map(|text| text.trim().to_string())
         .unwrap_or_default();
@@ -480,7 +480,7 @@ fn route_calendar(lower: &str) -> Option<FastIntent> {
             .to_string()
     })
     .filter(|text| !text.is_empty())
-    .unwrap_or_else(|| "Coda event".into());
+    .unwrap_or_else(|| "Lar event".into());
     Some(FastIntent::CalendarEvent {
         title,
         when: lower.to_string(),

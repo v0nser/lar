@@ -193,7 +193,7 @@ fn upsert_person(people: &mut Vec<StoredPerson>, name: &str, now: u64) {
 }
 
 fn memory_path(_app: &AppHandle) -> Option<PathBuf> {
-    Some(crate::coda::agent_dir().join("meeting_memory.json"))
+    Some(crate::lar::agent_dir().join("meeting_memory.json"))
 }
 
 #[cfg(test)]

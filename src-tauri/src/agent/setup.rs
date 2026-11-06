@@ -8,7 +8,7 @@ use super::runtime::AgentRuntime;
 use crate::ollama::Coach;
 use crate::transcribe::model;
 
-pub const DOWNLOAD_EVENT: &str = "coda://setup-download";
+pub const DOWNLOAD_EVENT: &str = "lar://setup-download";
 
 #[derive(Debug, Clone, Serialize)]
 #[serde(rename_all = "camelCase")]

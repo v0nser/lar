@@ -1,6 +1,6 @@
 /** All visitor-facing copy. Edit here; components import from this file. */
 
-export type Who = "engineer" | "friend" | "coda";
+export type Who = "engineer" | "friend" | "lar";
 export type Mood = "tired" | "confused" | "curious" | "calm" | "happy" | "asleep";
 export type PropId = "rec" | "tabs" | "sticky" | "cal" | "pdf";
 export type PropState = "chaos" | "settling" | "resolved" | "dock";
@@ -19,7 +19,7 @@ export interface Chapter {
   title: string;
   caption: string;
   props: PropState;
-  coda: boolean;
+  lar: boolean;
   moods: Record<Who, Mood>;
   lines: Line[];
 }
@@ -49,18 +49,19 @@ export const cast: Record<Who, { name: string; role: string; label: string }> = 
     role: "the friend",
     label: "Ria, his friend, with round glasses and a hair bun",
   },
-  coda: {
-    name: "Coda",
+  lar: {
+    name: "Lar",
     role: "the stagehand",
-    label: "Coda, a small marigold orb with a leaf sprout and pill-shaped eyes",
+    label: "Lar, a small marigold orb with a leaf sprout and pill-shaped eyes",
   },
 };
 
 export const site = {
-  name: "Coda",
-  tagline: "Coda: Your work, resolved. Your mind, at peace.",
+  name: "Lar",
+  beta: "Beta",
+  tagline: "Lar Beta: Your work, resolved. Your mind, at peace.",
   download: {
-    label: "Download Coda",
+    label: "Download Lar Beta",
     subtitle: "Runs locally. Requires Ollama.",
     href: "https://github.com/v0nser/ghostnote",
   },
@@ -74,18 +75,18 @@ export const site = {
   ],
 
   hero: {
-    kicker: "cold open",
+    kicker: "Lar Beta",
     title: "Your work, resolved.",
     italic: "Your mind, at peace.",
     skip: "Skip intro",
     enter: "Watch the story",
-    download: "Download Coda",
+    download: "Download Lar Beta",
     open: [
-      { who: "coda" as const, text: "You're early. They're still drowning." },
+      { who: "lar" as const, text: "You're early. They're still drowning." },
       { who: "friend" as const, text: "Who are you talking to?" },
-      { who: "coda" as const, text: "The person holding the laptop. Hi." },
+      { who: "lar" as const, text: "The person holding the laptop. Hi." },
       { who: "engineer" as const, text: "There's a recording. Nobody is going to watch it." },
-      { who: "coda" as const, text: "I live here. I prepare the work. You say yes. Scroll — I'll show you." },
+      { who: "lar" as const, text: "I live here. I prepare the work. You say yes. Scroll — I'll show you." },
     ],
   },
 
@@ -97,8 +98,8 @@ export const site = {
         title: "The Confusion",
         caption: "A recording nobody watched. Forty-seven tabs. A sticky note that just says URGENT.",
         props: "chaos",
-        coda: false,
-        moods: { engineer: "tired", friend: "confused", coda: "calm" },
+        lar: false,
+        moods: { engineer: "tired", friend: "confused", lar: "calm" },
         lines: [
           { who: "engineer", text: "Did anyone write down who owns the action items?" },
           { who: "friend", text: "I don't even know which tab the PDF is in." },
@@ -112,13 +113,13 @@ export const site = {
         title: "The Arrival",
         caption: "Something small and warm floats in from the edge of the desk.",
         props: "settling",
-        coda: true,
-        moods: { engineer: "curious", friend: "curious", coda: "calm" },
+        lar: true,
+        moods: { engineer: "curious", friend: "curious", lar: "calm" },
         lines: [
           { who: "friend", text: "…what is that?" },
-          { who: "coda", text: "Hi. I'm Coda. I live on this laptop — nowhere else." },
+          { who: "lar", text: "Hi. I'm Lar. I live on this laptop — nowhere else." },
           { who: "engineer", text: "Can you deal with this mess?" },
-          { who: "coda", text: "I can prepare all of it. You decide what happens." },
+          { who: "lar", text: "I can prepare all of it. You decide what happens." },
         ],
       },
       {
@@ -127,14 +128,14 @@ export const site = {
         title: "The Resolve",
         caption: "One cue at a time. Each thing becomes finished work — or a draft waiting for a yes.",
         props: "resolved",
-        coda: true,
-        moods: { engineer: "happy", friend: "curious", coda: "happy" },
+        lar: true,
+        moods: { engineer: "happy", friend: "curious", lar: "happy" },
         lines: [
-          { who: "coda", text: "The recording: three action items, with owners and due dates.", resolves: ["rec"] },
-          { who: "coda", text: "You said “plea my focus playlist”. I heard play.", resolves: ["tabs"] },
-          { who: "coda", text: "The recap email is drafted. It waits for your yes.", resolves: ["sticky"] },
+          { who: "lar", text: "The recording: three action items, with owners and due dates.", resolves: ["rec"] },
+          { who: "lar", text: "You said “plea my focus playlist”. I heard play.", resolves: ["tabs"] },
+          { who: "lar", text: "The recap email is drafted. It waits for your yes.", resolves: ["sticky"] },
           { who: "friend", text: "Wait — it didn't send it?", resolves: ["cal", "pdf"] },
-          { who: "coda", text: "Never on my own. You're the director. I'm the stagehand." },
+          { who: "lar", text: "Never on my own. You're the director. I'm the stagehand." },
         ],
       },
       {
@@ -143,11 +144,11 @@ export const site = {
         title: "The Quiet",
         caption: "The desk is clear. Everything that needs a decision is waiting in one place.",
         props: "dock",
-        coda: true,
-        moods: { engineer: "calm", friend: "asleep", coda: "calm" },
+        lar: true,
+        moods: { engineer: "calm", friend: "asleep", lar: "calm" },
         lines: [
           { who: "engineer", text: "…that's it?" },
-          { who: "coda", text: "That's it. Everything I did is in the audit log." },
+          { who: "lar", text: "That's it. Everything I did is in the audit log." },
           { who: "engineer", text: "Huh. My mind is actually quiet." },
         ],
       },
@@ -159,7 +160,7 @@ export const site = {
     title: "A cue has a body.",
     titleItalic: "Watch it move.",
     intro:
-      "Coda is not a cloud. It is a small set of nerves on this laptop: an ear, an eye, a cortex, a hand, and a conscience that is you. Simple cues skip the cortex. Risky ones stop at the gate. The cloud is not plugged in.",
+      "Lar is not a cloud. It is a small set of nerves on this laptop: an ear, an eye, a cortex, a hand, and a conscience that is you. Simple cues skip the cortex. Risky ones stop at the gate. The cloud is not plugged in.",
     chassis: "this laptop",
     cloud: "cloud gpt",
     organs: [
@@ -181,7 +182,7 @@ export const site = {
           { kind: "local", label: "Correction", where: "on-device rules", detail: "“plea” before a music phrase becomes “play”. “please help” is left alone." },
           { kind: "local", label: "Fast intent", where: "intent router", detail: "Simple commands skip the language model entirely. No plan, no wait." },
           { kind: "tool", label: "Music", where: "Apple Music", detail: "Opens the Focus playlist and starts playback." },
-          { kind: "log", label: "Verify + log", where: "~/.coda/coda_audit.log", detail: "Coda checks playback actually started before saying so, then writes a plain-English line." },
+          { kind: "log", label: "Verify + log", where: "~/.lar/lar_audit.log", detail: "Lar checks playback actually started before saying so, then writes a plain-English line." },
         ],
       },
       {
@@ -194,7 +195,7 @@ export const site = {
           { kind: "tool", label: "Draft", where: "local draft", detail: "Writes the email with recipient, subject and body. Does not send." },
           { kind: "gate", label: "Your yes", where: "approval card", detail: "You see exactly what will go out. Approve, edit, or deny. Nothing moves until you choose." },
           { kind: "tool", label: "Mail", where: "Mail / Outlook on this machine", detail: "Only after approval, sent from your own mail app." },
-          { kind: "log", label: "Log", where: "~/.coda/coda_audit.log", detail: "The draft, your decision and the result are recorded." },
+          { kind: "log", label: "Log", where: "~/.lar/lar_audit.log", detail: "The draft, your decision and the result are recorded." },
         ],
       },
       {
@@ -202,7 +203,7 @@ export const site = {
         cue: "⌘⇧C  “what's on my screen?”",
         summary: "A frame held in memory, read by a small vision model, then thrown away.",
         steps: [
-          { kind: "input", label: "Hotkey", where: "⌘⇧C · Ctrl+Shift+C", detail: "Captures the focused window before Coda's own window appears." },
+          { kind: "input", label: "Hotkey", where: "⌘⇧C · Ctrl+Shift+C", detail: "Captures the focused window before Lar's own window appears." },
           { kind: "local", label: "Frame in RAM", where: "JPEG, memory only", detail: "Downscaled and kept in memory. Not written to disk unless you turn that on." },
           { kind: "local", label: "Fast intent", where: "intent router", detail: "Skips the planner and goes straight to vision." },
           { kind: "model", label: "moondream", where: "vision model · Ollama", detail: "Reads the frame and streams an answer into a small overlay." },
@@ -217,8 +218,8 @@ export const site = {
           { kind: "input", label: "Your words", where: "Agent tab", detail: "“forget …” is recognised before any planning happens." },
           { kind: "model", label: "Memory search", where: "nomic-embed-text · local", detail: "Finds memories and open meeting items that match, using local embeddings." },
           { kind: "gate", label: "Your confirm", where: "approval card", detail: "Every match is listed. Nothing is deleted yet." },
-          { kind: "tool", label: "Delete", where: "~/.coda/agent", detail: "Rows and their embeddings are removed. Not hidden — gone." },
-          { kind: "log", label: "Log", where: "~/.coda/coda_audit.log", detail: "A receipt that the forget happened." },
+          { kind: "tool", label: "Delete", where: "~/.lar/agent", detail: "Rows and their embeddings are removed. Not hidden — gone." },
+          { kind: "log", label: "Log", where: "~/.lar/lar_audit.log", detail: "A receipt that the forget happened." },
         ],
       },
     ] satisfies Route[],
@@ -227,9 +228,9 @@ export const site = {
   principles: {
     eyebrow: "Principles",
     items: [
-      { big: "No cloud GPT.", small: "Whisper and Ollama run on localhost. If they're off, Coda waits. It doesn't quietly phone a server." },
+      { big: "No cloud GPT.", small: "Whisper and Ollama run on localhost. If they're off, Lar waits. It doesn't quietly phone a server." },
       { big: "No silent auto-send.", small: "Email, calendar events, reminders, deletes — each one stops at a card with your decision on it." },
-      { big: "A receipt for everything.", small: "Every step lands in ~/.coda/coda_audit.log in plain English. Filter it, export it, keep it." },
+      { big: "A receipt for everything.", small: "Every step lands in ~/.lar/lar_audit.log in plain English. Filter it, export it, keep it." },
     ],
   },
 
@@ -250,9 +251,9 @@ export const site = {
 
   honest: {
     eyebrow: "Honest limits",
-    title: "What Coda won't pretend.",
+    title: "What Lar won't pretend.",
     items: [
-      "No cloud models. If Ollama is down, Coda waits — it does not phone home.",
+      "No cloud models. If Ollama is down, Lar waits — it does not phone home.",
       "Scanned-image PDFs aren't read. Text PDFs are.",
       "Speech recognition is Whisper small.en. Good, not perfect. “plea” is mapped to “play” for music, and that's the kind of fix it needs.",
       "You need Ollama and a capable machine. llama3.1:8b plans; moondream answers screen questions.",
@@ -265,18 +266,18 @@ export const site = {
     items: [
       {
         q: "Does any audio or text leave my computer?",
-        a: "No. Microphone audio goes to a local Whisper sidecar. Planning uses Ollama on localhost. The audit log is a file in ~/.coda.",
+        a: "No. Microphone audio goes to a local Whisper sidecar. Planning uses Ollama on localhost. The audit log is a file in ~/.lar.",
       },
       {
-        q: "Will Coda send email or create calendar events on its own?",
+        q: "Will Lar send email or create calendar events on its own?",
         a: "No. They stay drafts until you approve them in the app. There is no silent auto-send.",
       },
       {
-        q: "What happened to Ghost Note?",
-        a: "Coda is the rename. Your Ghost Note data is copied into ~/.coda on first launch. The old folder is not deleted.",
+        q: "What happened to Ghost Note and Coda?",
+        a: "Lar Beta is the current name. Your Ghost Note or Coda data is copied into ~/.lar on first launch. The old folders are not deleted.",
       },
       {
-        q: "What do I install besides Coda?",
+        q: "What do I install besides Lar Beta?",
         a: "Ollama, then pull llama3.1:8b — and optionally moondream and nomic-embed-text. Whisper small.en installs from the in-app Setup tab.",
       },
     ],
@@ -284,10 +285,10 @@ export const site = {
 
   contribute: {
     eyebrow: "Build it with us",
-    title: "Coda is open source.",
+    title: "Lar is open source.",
     titleItalic: "Make it stronger.",
     intro:
-      "Every line of Coda is on GitHub. If it mishears you, misses a file, or could be kinder to your laptop, you can fix it — or tell us where it hurts.",
+      "Every line of Lar is on GitHub. If it mishears you, misses a file, or could be kinder to your laptop, you can fix it — or tell us where it hurts.",
     repo: "v0nser/ghostnote",
     botName: "Patch",
     botLabel: "Patch, a small ink robot with antenna ears, a wrench hand and a branch-shaped tail",
@@ -296,7 +297,7 @@ export const site = {
       "Found a bug? I want to hear about it. Really.",
       "Whisper heard “plea” once. Somebody fixed it. That could be you next.",
       "No PR is too small. Typos count.",
-      "Coda gets stronger one yes at a time. Mine is waiting for yours.",
+      "Lar gets stronger one yes at a time. Mine is waiting for yours.",
     ],
     ways: [
       {
@@ -330,9 +331,9 @@ export const site = {
       {
         id: "art",
         title: "Redraw the cast",
-        body: "Kabir, Ria, Coda and Patch are first-pass SVG. Hand-ink them and keep the layer names.",
+        body: "Kabir, Ria, Lar and Patch are first-pass SVG. Hand-ink them and keep the layer names.",
         cta: "Read ASSETS.md",
-        path: "/blob/main/coda-site/ASSETS.md",
+        path: "/blob/main/lar-site/ASSETS.md",
       },
       {
         id: "docs",
@@ -365,6 +366,6 @@ export const site = {
   },
 
   footer: {
-    note: "Coda is local-first software. This page is a drawing — no user counts, no benchmarks, no testimonials.",
+    note: "Lar Beta is local-first software. This page is a drawing — no user counts, no benchmarks, no testimonials.",
   },
 };

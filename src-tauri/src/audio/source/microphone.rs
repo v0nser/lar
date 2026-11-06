@@ -62,7 +62,7 @@ pub fn spawn(device_id: Option<String>, sink: FrameSink) -> AudioResult<SourceHa
 
     let thread_stop = Arc::clone(&stop);
     let thread = std::thread::Builder::new()
-        .name("coda-microphone".into())
+        .name("lar-microphone".into())
         .spawn(move || run(device_id, sink, thread_stop, ready_tx))
         .map_err(|err| AudioError::StreamOpen(err.to_string()))?;
 

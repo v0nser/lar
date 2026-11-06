@@ -10,7 +10,7 @@ pub enum Turn {
 }
 
 const DECIDE_SYSTEM: &str = "\
-You are Coda, a local assistant. Reply with one JSON object only.
+You are Lar, a local assistant. Reply with one JSON object only.
 {\"action\":\"answer\",\"text\":\"...\"}
 or
 {\"action\":\"tool\",\"name\":\"WEB_SEARCH\",\"args\":{\"query\":\"...\"}}
@@ -25,7 +25,7 @@ Never invent an itinerary. Never claim you sent email, paid, or changed the comp
 unless a tool result says success=true.";
 
 const ANSWER_SYSTEM: &str = "\
-You are Coda, a local assistant. Be direct and useful. \
+You are Lar, a local assistant. Be direct and useful. \
 Never claim you sent email, paid, or changed permissions unless a tool result says so. \
 No preamble.";
 
@@ -315,7 +315,7 @@ pub async fn resolve_agent_model(
     host: &str,
     fallback: &str,
 ) -> String {
-    if let Ok(forced) = std::env::var("CODA_AGENT_MODEL")
+    if let Ok(forced) = std::env::var("LAR_AGENT_MODEL")
         .or_else(|_| std::env::var("GHOSTNOTE_AGENT_MODEL"))
     {
         if !forced.is_empty() {

@@ -49,8 +49,8 @@ export function Character({
       className={`character h-full w-full overflow-visible ${speaking ? "is-speaking is-hot" : ""} ${dim ? "is-dim" : ""} ${className ?? ""}`}
     >
       <title>{label}</title>
-      {who === "coda" ? (
-        <Coda mood={mood} speaking={speaking} gaze={gaze} blinkDelay={blinkDelay} />
+      {who === "lar" ? (
+        <Lar mood={mood} speaking={speaking} gaze={gaze} blinkDelay={blinkDelay} />
       ) : (
         <Human who={who} mood={mood} speaking={speaking} gaze={gaze} blinkDelay={blinkDelay} />
       )}
@@ -222,9 +222,9 @@ function Zzz() {
   );
 }
 
-function Coda({ mood, speaking, gaze, blinkDelay }: PartProps) {
+function Lar({ mood, speaking, gaze, blinkDelay }: PartProps) {
   const raw = useId();
-  const id = `coda${raw.replace(/[^a-zA-Z0-9]/g, "")}`;
+  const id = `lar${raw.replace(/[^a-zA-Z0-9]/g, "")}`;
   return (
     <>
       <defs>

@@ -1,8 +1,8 @@
-# Coda
+# Lar Beta
 
 Local-first personal AI agent — and a stealth meeting assistant.
 
-**Coda: Your work, resolved. Your mind, at peace.**
+**Lar Beta: Your work, resolved. Your mind, at peace.**
 
 Plan, use tools, remember, and ask before sensitive actions. Meetings still transcribe and answer on your machine, hidden from screen share.
 
@@ -23,21 +23,21 @@ This repository is three apps:
 
 | Path | What it is |
 | --- | --- |
-| Repo root | **Coda** desktop app (Tauri + React + Rust) |
-| `coda-site/` | Coda marketing site (Astro; comic + simulated demo) |
+| Repo root | **Lar Beta** desktop app (Tauri + React + Rust) |
+| `lar-site/` | Lar Beta marketing site (Astro; comic + simulated demo) |
 | `website/` | Older Ghost Note landing (Next.js, Polar/checkout) |
 
-## Data directory and Ghost Note migration
+## Data directory and migration
 
-Coda stores data in `~/.coda` (Windows: `%USERPROFILE%\.coda`). Override with `CODA_HOME`.
+Lar stores data in `~/.lar` (Windows: `%USERPROFILE%\.lar`). Override with `LAR_HOME`.
 
-On first launch it **copies** existing Ghost Note app data from `com.ghostnote.app` into `~/.coda` if that folder exists. The source is **not deleted**. Files Coda already wrote are not overwritten. A marker file `.migrated-from-ghostnote` records that the copy ran.
+On first launch it **copies** existing Coda (`~/.coda`) or Ghost Note (`com.ghostnote.app`) data into `~/.lar` if that folder exists. The source is **not deleted**. Files Lar already wrote are not overwritten. A marker file `.migrated-from-legacy` records that the copy ran.
 
-Speech models live in `~/.coda/models`. Agent state, meeting memory, and logs live under `~/.coda/agent` and `~/.coda/logs`.
+Speech models live in `~/.lar/models`. Agent state, meeting memory, and logs live under `~/.lar/agent` and `~/.lar/logs`.
 
 ## macOS permissions after the rename
 
-The bundle identifier is now `app.coda.desktop`. macOS treats Coda as a **new app**, so previous Ghost Note grants do not apply. Re-allow:
+The bundle identifier is now `app.lar.desktop`. macOS treats Lar as a **new app**, so previous Ghost Note grants do not apply. Re-allow:
 
 - **Microphone**
 - **Screen Recording** (meeting participant audio, and ⌘⇧C / Ctrl+Shift+C screen-ask)
@@ -48,7 +48,7 @@ System Settings → Privacy & Security. Approve Automation when macOS prompts af
 
 ## Download vs clone
 
-- **Download** if you want to *use* Coda. Grab the Mac `.dmg` from the landing page. The Windows `.exe` must be built on Windows.
+- **Download** if you want to *use* Lar. Grab the Mac `.dmg` from the landing page. The Windows `.exe` must be built on Windows.
 - **Clone** if you want to *build or contribute*. That is `git clone`, `npm install`, and `npm run tauri:dev` — not the installer.
 
 ```bash
@@ -86,7 +86,7 @@ The UI is Vite on port `1420`. The Rust side captures audio, runs local Whisper 
 
 ### Meeting action items (local `llama3.1:8b`)
 
-After you hit **Summarize**, Coda extracts structured action items (owner, task, due) from the transcript with local Ollama. It remembers items/topics/people, surfaces overdue or duplicate nudges, and writes an audit line. Email and reminder follow-ups stay drafts until you approve them.
+After you hit **Summarize**, Lar extracts structured action items (owner, task, due) from the transcript with local Ollama. It remembers items/topics/people, surfaces overdue or duplicate nudges, and writes an audit line. Email and reminder follow-ups stay drafts until you approve them.
 
 ```bash
 ollama pull llama3.1:8b
@@ -97,7 +97,7 @@ ollama serve
 
 If Ollama is down, the app reports `Ollama is not reachable at …` and keeps running. If `llama3.1:8b` is missing, extraction fails with `ollama pull llama3.1:8b` — summaries still use the small live-coach model.
 
-**Not included:** cloud fallback, a second agent framework, or a new database crate (memory is `meeting_memory.json` + `meeting_audit.jsonl` under `~/.coda`). Email send and calendar create run **after you approve** in the workspace, using Mail/Outlook and Calendar on this machine.
+**Not included:** cloud fallback, a second agent framework, or a new database crate (memory is `meeting_memory.json` + `meeting_audit.jsonl` under `~/.lar`). Email send and calendar create run **after you approve** in the workspace, using Mail/Outlook and Calendar on this machine.
 
 Agent work needs the larger model:
 
@@ -107,13 +107,13 @@ ollama pull moondream
 ollama pull nomic-embed-text
 ```
 
-Then say things like `summarize the pdf`, `send email to name@mail.com about the recap`, `what's on my screen`, or `schedule a meeting standup tomorrow at 9am`. Approve when asked. macOS will also ask for Mail/Calendar/Reminders automation — allow Coda.
+Then say things like `summarize the pdf`, `send email to name@mail.com about the recap`, `what's on my screen`, or `schedule a meeting standup tomorrow at 9am`. Approve when asked. macOS will also ask for Mail/Calendar/Reminders automation — allow Lar.
 
-**Screen ask:** ⌘⇧C (Ctrl+Shift+C on Windows) captures the focused window in RAM and streams an answer from `moondream` (or `llava` if you set `CODA_VISION_MODEL`). Frames are not written to disk unless `CODA_SAVE_SCREEN_CAPTURES=1`. This is separate from “take a screenshot”, which still saves a file.
+**Screen ask:** ⌘⇧C (Ctrl+Shift+C on Windows) captures the focused window in RAM and streams an answer from `moondream` (or `llava` if you set `LAR_VISION_MODEL`). Frames are not written to disk unless `LAR_SAVE_SCREEN_CAPTURES=1`. This is separate from “take a screenshot”, which still saves a file.
 
 **Memory:** `remember …` stores a fact with a local embedding (`ollama pull nomic-embed-text`). `what do you remember about …` searches memories and open meeting action items. `forget …` lists matches first and deletes rows only after you approve.
 
-**Audit:** the Audit tab lists local events (tasks, approvals, meeting extracts). A human-readable copy lives at `~/.coda/coda_audit.log`. Export downloads that file. Nothing is uploaded.
+**Audit:** the Audit tab lists local events (tasks, approvals, meeting extracts). A human-readable copy lives at `~/.lar/lar_audit.log`. Export downloads that file. Nothing is uploaded.
 
 ### Typecheck / UI build
 
@@ -136,17 +136,17 @@ npm run installers:publish
 
 `scripts/publish-installers.sh` copies the generated `.dmg` and `.exe` into `website/public/downloads/` and writes `latest.json`.
 
-## Landing site (`coda-site/`)
+## Landing site (`lar-site/`)
 
-Hand-drawn Coda page. Copy lives in `coda-site/src/content/site.ts`.
+Hand-drawn Lar page. Copy lives in `lar-site/src/content/site.ts`.
 
 ```bash
-cd coda-site
+cd lar-site
 npm install
 npm run dev
 ```
 
-Open [http://localhost:4321](http://localhost:4321). Root shortcut: `npm run coda-site`.
+Open [http://localhost:4321](http://localhost:4321). Root shortcut: `npm run lar-site`.
 
 ## Older Ghost Note landing (`website/`)
 

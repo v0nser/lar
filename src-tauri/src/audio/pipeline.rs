@@ -20,9 +20,9 @@ use super::types::{LevelEvent, RawFrames, Speaker, Utterance, VadEvent};
 use crate::ollama::Coach;
 
 /// Event carrying level-meter data to the UI.
-pub const LEVEL_EVENT: &str = "coda://audio-level";
+pub const LEVEL_EVENT: &str = "lar://audio-level";
 /// Interviewer started or stopped speaking. Fires before Whisper runs.
-pub const VAD_EVENT: &str = "coda://vad";
+pub const VAD_EVENT: &str = "lar://vad";
 
 /// How often the level meter updates. Fast enough to look live, slow enough
 /// that we are not spamming the webview's IPC channel during a long meeting.
@@ -49,7 +49,7 @@ impl Pipeline {
         let thread_stop = Arc::clone(&stop);
 
         let thread = std::thread::Builder::new()
-            .name("coda-audio-pipeline".into())
+            .name("lar-audio-pipeline".into())
             .spawn(move || {
                 run(
                     rx,

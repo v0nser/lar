@@ -650,36 +650,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "coda"
-version = "0.1.0"
-dependencies = [
- "base64 0.22.1",
- "cpal",
- "hound",
- "image",
- "log",
- "notify",
- "objc2",
- "pdf-extract",
- "reqwest 0.12.28",
- "screencapturekit",
- "serde",
- "serde_json",
- "tauri",
- "tauri-build",
- "tauri-plugin-autostart",
- "tauri-plugin-global-shortcut",
- "tauri-plugin-log",
- "tauri-plugin-notification",
- "tauri-plugin-opener",
- "tauri-plugin-shell",
- "thiserror 2.0.20",
- "tokio",
- "windows 0.61.3",
- "xcap",
-]
-
-[[package]]
 name = "combine"
 version = "4.6.8"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2514,6 +2484,36 @@ checksum = "07293a4e297ac234359b510362495713f75ea345d5307140414f20c69ffeb087"
 dependencies = [
  "bitflags 2.13.1",
  "libc",
+]
+
+[[package]]
+name = "lar"
+version = "0.1.0"
+dependencies = [
+ "base64 0.22.1",
+ "cpal",
+ "hound",
+ "image",
+ "log",
+ "notify",
+ "objc2",
+ "pdf-extract",
+ "reqwest 0.12.28",
+ "screencapturekit",
+ "serde",
+ "serde_json",
+ "tauri",
+ "tauri-build",
+ "tauri-plugin-autostart",
+ "tauri-plugin-global-shortcut",
+ "tauri-plugin-log",
+ "tauri-plugin-notification",
+ "tauri-plugin-opener",
+ "tauri-plugin-shell",
+ "thiserror 2.0.20",
+ "tokio",
+ "windows 0.61.3",
+ "xcap",
 ]
 
 [[package]]

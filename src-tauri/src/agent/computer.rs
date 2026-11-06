@@ -185,7 +185,7 @@ fn focus_application(name: &str) -> AgentResult<ToolOutput> {
 }
 
 fn take_screenshot() -> AgentResult<ToolOutput> {
-    let path = std::env::temp_dir().join(format!("coda-screen-{}.png", super::ids::now_ms()));
+    let path = std::env::temp_dir().join(format!("lar-screen-{}.png", super::ids::now_ms()));
     platform().screenshot(&path)?;
     if !path.is_file() {
         return Err(AgentError::msg("Screenshot was not written. Grant Screen Recording if this is a Mac."));
@@ -402,7 +402,7 @@ impl Platform for MacOs {
             Ok(())
         } else {
             Err(AgentError::msg(
-                "Could not capture the screen. Enable Screen Recording for Coda.",
+                "Could not capture the screen. Enable Screen Recording for Lar.",
             ))
         }
     }
@@ -442,7 +442,7 @@ impl Platform for MacOs {
             Ok(())
         } else {
             Err(AgentError::msg(
-                "Could not type. Grant Accessibility to Coda in System Settings.",
+                "Could not type. Grant Accessibility to Lar in System Settings.",
             ))
         }
     }
@@ -456,7 +456,7 @@ impl Platform for MacOs {
             Ok(())
         } else {
             Err(AgentError::msg(
-                "Could not press that key. Grant Accessibility to Coda.",
+                "Could not press that key. Grant Accessibility to Lar.",
             ))
         }
     }
@@ -485,7 +485,7 @@ impl Platform for MacOs {
             Ok(())
         } else {
             Err(AgentError::msg(
-                "Could not send that shortcut. Grant Accessibility to Coda.",
+                "Could not send that shortcut. Grant Accessibility to Lar.",
             ))
         }
     }

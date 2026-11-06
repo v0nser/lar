@@ -62,8 +62,8 @@ fn log_dirs(app: Option<&AppHandle>) -> Vec<PathBuf> {
             }
         }
     }
-    dirs.push(crate::coda::logs_dir());
-    dirs.push(std::env::temp_dir().join("coda-logs"));
+    dirs.push(crate::lar::logs_dir());
+    dirs.push(std::env::temp_dir().join("lar-logs"));
     dirs
 }
 

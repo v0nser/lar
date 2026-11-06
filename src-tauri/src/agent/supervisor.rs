@@ -1,4 +1,4 @@
-//! Isolates agent work from the UI process. A task failure must not quit Coda.
+//! Isolates agent work from the UI process. A task failure must not quit Lar.
 
 use tauri::AppHandle;
 
@@ -39,7 +39,7 @@ impl TaskSupervisor {
             }
             task.status = TaskStatus::Failed;
             task.errors
-                .push("Interrupted when Coda last closed. Nothing was resumed automatically.".into());
+                .push("Interrupted when Lar last closed. Nothing was resumed automatically.".into());
             task.touch();
             recovered += 1;
         }

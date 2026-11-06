@@ -1,18 +1,18 @@
 # Windows setup
 
-Coda on Windows is a normal Tauri app plus two local extras: a Whisper
+Lar on Windows is a normal Tauri app plus two local extras: a Whisper
 model and Ollama. You do **not** need to clone the repo to *use* a signed
 installer. You do need the steps below to *build* or to finish first-run
 setup.
 
-Data lives in `%USERPROFILE%\.coda`. If you used Ghost Note before, Coda
+Data lives in `%USERPROFILE%\.lar`. If you used Ghost Note before, Lar
 copies that app data on first launch and does not delete it.
 
 ## Use the installer (when published)
 
 1. Install [WebView2](https://developer.microsoft.com/en-us/microsoft-edge/webview2/) if Windows 10 asks (Windows 11 already has it). The NSIS bundle can download it.
-2. Run the Coda setup `.exe` (per-user, no admin).
-3. Open Coda. The **Setup** tab downloads the speech model and checks Ollama.
+2. Run the Lar setup `.exe` (per-user, no admin).
+3. Open Lar. The **Setup** tab downloads the speech model and checks Ollama.
 4. Install [Ollama for Windows](https://ollama.com/download/windows) and pull a small model:
 
 ```
@@ -40,7 +40,7 @@ npm run tauri:dev
 ```
 
 `setup-whisper.ps1` builds `whisper-cli` as a Tauri sidecar and downloads
-`ggml-small.en.bin` into `%USERPROFILE%\.coda\models`.
+`ggml-small.en.bin` into `%USERPROFILE%\.lar\models`.
 
 If you skip the script, the in-app Setup tab can still download the model
 once the sidecar exists.
@@ -57,4 +57,4 @@ npm run tauri:build
 npm run installers:publish
 ```
 
-Must run on Windows to produce `Coda-Setup.exe`.
+Must run on Windows to produce `Lar-Setup.exe`.

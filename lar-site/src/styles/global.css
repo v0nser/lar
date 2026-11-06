@@ -228,7 +228,7 @@ body {
   animation: jitter 2.6s ease-in-out infinite;
 }
 
-.coda-dot {
+.lar-dot {
   background: radial-gradient(circle at 35% 30%, #ffd8b2, #e56a2d 48%, #c44512);
 }
 

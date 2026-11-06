@@ -84,8 +84,8 @@ export interface MeetingSummary {
 }
 
 export const COACH_EVENTS = {
-  points: "coda://talking-points",
-  status: "coda://coach-status",
+  points: "lar://talking-points",
+  status: "lar://coach-status",
 } as const;
 
 export const coachIpc = {

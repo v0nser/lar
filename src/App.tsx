@@ -45,7 +45,7 @@ export default function App() {
         <div className="flex min-w-0 items-center gap-2" data-tauri-drag-region="false">
           <WindowControls />
           <span className="ml-1 truncate text-xs font-medium tracking-wide text-muted-foreground">
-            Coda
+            Lar Beta
           </span>
         </div>
         <nav className="flex items-center gap-1" data-tauri-drag-region="false">

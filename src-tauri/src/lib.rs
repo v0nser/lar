@@ -1,4 +1,4 @@
-//! Coda — local-first desktop assistant.
+//! Lar Beta — local-first desktop assistant.
 //!
 //! "Your work, resolved. Your mind, at peace."
 //!
@@ -15,7 +15,7 @@
 
 pub mod agent;
 pub mod audio;
-pub mod coda;
+pub mod lar;
 pub mod meeting;
 pub mod ollama;
 pub mod session;
@@ -54,12 +54,12 @@ pub fn run() {
         .manage(Coach::default())
         .manage(AgentRuntime::default())
         .setup(|app| {
-            match crate::coda::migrate_from_ghostnote() {
+            match crate::lar::migrate_from_legacy() {
                 Ok(report) if report.copied => {
-                    log::info!("copied Ghost Note data into ~/.coda (source left in place)");
+                    log::info!("copied legacy data into ~/.lar (source left in place)");
                 }
                 Ok(_) => {}
-                Err(err) => log::warn!("Ghost Note data copy skipped: {err}"),
+                Err(err) => log::warn!("legacy data copy skipped: {err}"),
             }
             if let Some(window) = app.get_webview_window("main") {
                 let _ = window.show();
@@ -156,7 +156,7 @@ pub fn run() {
             }
         })
         .build(tauri::generate_context!())
-        .expect("error while building Coda")
+        .expect("error while building Lar")
         .run(|app, event| {
             if let tauri::RunEvent::Reopen { .. } = event {
                 if let Some(window) = app.get_webview_window("main") {
@@ -168,7 +168,7 @@ pub fn run() {
         });
 }
 
-/// Logging is deliberately conservative: Coda handles meeting transcripts
+/// Logging is deliberately conservative: Lar handles meeting transcripts
 /// and notes, so release builds only ever emit warnings and errors, and no
 /// subsystem is permitted to log user content at any level.
 fn log_plugin<R: tauri::Runtime>() -> tauri::plugin::TauriPlugin<R> {

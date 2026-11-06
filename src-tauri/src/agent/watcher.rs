@@ -12,7 +12,7 @@ use super::runtime::AgentRuntime;
 pub fn spawn(app: &AppHandle) {
     let app = app.clone();
     std::thread::Builder::new()
-        .name("coda-folder-watch".into())
+        .name("lar-folder-watch".into())
         .spawn(move || {
             if let Err(err) = run(app) {
                 log::warn!("folder watcher stopped: {err}");

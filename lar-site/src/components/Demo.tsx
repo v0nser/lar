@@ -155,10 +155,10 @@ function DemoInner() {
         <div className="flex items-center justify-between gap-4 border-b border-ink/8 px-4 py-3 md:px-6">
           <div className="flex items-center gap-3">
             <span className="size-11">
-              <Character who="coda" label={cast.coda.label} speaking={busy} mood={waiting ? "curious" : "calm"} />
+              <Character who="lar" label={cast.lar.label} speaking={busy} mood={waiting ? "curious" : "calm"} />
             </span>
             <div>
-              <p className="text-sm font-medium">Coda</p>
+              <p className="text-sm font-medium">Lar Beta</p>
               <p className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">
                 <span className={`size-1.5 rounded-full ${busy ? "bg-accent" : waiting ? "bg-accent/60" : "bg-sage"}`} />
                 {status}
@@ -193,7 +193,7 @@ function DemoInner() {
                         {t.prompt}
                       </motion.p>
                       <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }} className="flex gap-3">
-                        <span className="coda-dot mt-1 size-6 shrink-0 rounded-full border border-ink" aria-hidden="true" />
+                        <span className="lar-dot mt-1 size-6 shrink-0 rounded-full border border-ink" aria-hidden="true" />
                         <div className="min-w-0 flex-1 rounded-[18px] rounded-tl-md border border-ink/8 bg-paper/60 p-4 text-sm leading-relaxed">
                           <TurnBody
                             turn={t}
@@ -236,13 +236,13 @@ function DemoInner() {
                 }}
               >
                 <label className="sr-only" htmlFor="demo-cue">
-                  Cue Coda
+                  Cue Lar
                 </label>
                 <input
                   id="demo-cue"
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Cue Coda…"
+                  placeholder="Cue Lar…"
                   className="h-12 min-w-0 flex-1 rounded-full border border-ink/12 bg-paper/60 px-5 text-sm outline-none transition focus:border-ink/40"
                 />
                 <button type="submit" className="btn btn-ink h-12 px-5">
@@ -254,7 +254,7 @@ function DemoInner() {
 
           <aside className="border-t border-ink/8 bg-paper/40 md:border-l md:border-t-0" aria-label="Simulated audit log">
             <div className="flex items-center justify-between px-5 pt-5">
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">audit · coda_audit.log</p>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink-3">audit · lar_audit.log</p>
               <span className="font-mono text-[10px] text-ink-3">{audit.length}</span>
             </div>
             <ol className="h-[300px] space-y-0 overflow-y-auto px-5 py-4 md:h-[520px]">
